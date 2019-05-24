@@ -1,3 +1,3 @@
-# RecyclerViewHelper
-RecyclerviewHelper is Android Library that help to setup recyclerview without creating adapter class
+[![](https://jitpack.io/v/iandamping/RecyclerViewHelper.svg)](https://jitpack.io/#iandamping/RecyclerViewHelper)
+
 
