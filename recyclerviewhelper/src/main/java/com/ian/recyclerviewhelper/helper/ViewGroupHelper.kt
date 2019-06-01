@@ -9,14 +9,14 @@ import android.view.ViewGroup
 Created by Ian Damping on 06/05/2019.
 Github = https://github.com/iandamping
  */
-fun ViewGroup.inflates(layout: Int): View {
+internal fun ViewGroup.inflates(layout: Int): View {
     return LayoutInflater.from(context).inflate(layout, this, false)
 }
 
-fun View.visible() {
+internal fun View.visible() {
     this.visibility = View.VISIBLE
 }
 
-fun View.gone() {
+internal fun View.gone() {
     this.visibility = View.GONE
 }
