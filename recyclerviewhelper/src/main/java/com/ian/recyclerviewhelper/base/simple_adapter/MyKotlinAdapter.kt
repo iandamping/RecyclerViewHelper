@@ -1,4 +1,4 @@
-package com.ian.recyclerviewhelper.base
+package com.ian.recyclerviewhelper.base.simple_adapter
 
 import android.view.View
 

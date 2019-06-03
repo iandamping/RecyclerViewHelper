@@ -1,4 +1,4 @@
-package com.ian.recyclerviewhelper.base
+package com.ian.recyclerviewhelper.base.simple_adapter
 
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +21,11 @@ abstract class MyAbstractAdapter<T>(
     override fun getItemCount(): Int = data.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAbstractViewHolder {
-        return MyAbstractViewHolder(parent.inflates(layout))
+        return MyAbstractViewHolder(
+            parent.inflates(
+                layout
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: MyAbstractViewHolder, position: Int) {

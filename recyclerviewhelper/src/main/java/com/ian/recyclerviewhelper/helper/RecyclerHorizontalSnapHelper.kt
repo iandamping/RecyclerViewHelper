@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerHorizontalSnapHelper : LinearSnapHelper() {
+internal class RecyclerHorizontalSnapHelper : LinearSnapHelper() {
     private var mVerticalHelper: OrientationHelper? = null
     private var mHorizontalHelper: OrientationHelper? = null
 
