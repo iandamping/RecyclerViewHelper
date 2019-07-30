@@ -2,12 +2,11 @@ package com.ian.recyclerviewhelper.helper
 
 import android.view.View
 import androidx.paging.PagedList
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.ian.recyclerviewhelper.base.paging_adapter.MyKotlinPagingAdapter
 import com.ian.recyclerviewhelper.base.simple_adapter.MyKotlinAdapter
+import com.ian.recyclerviewhelper.base.simple_list_with_slide_adapter.MyKotlinListWithSlideAdapter
+import com.ian.recyclerviewhelper.base.simple_list_with_slide_adapter.MyListWithSlideToDelete
 
 /**
  *
@@ -131,6 +130,28 @@ fun <T> RecyclerView.setUpPagingWithGrid(
         return adapter
     }
     return null
+
+}
+
+fun <T> RecyclerView.setUpVerticalListAdapterWithSlideLeft(
+    items: List<T>?,
+    diffUtil: DiffUtil.ItemCallback<T>,
+    layoutResId: Int,
+    bindHolder: View.(T) -> Unit,
+    itemClick: T.() -> Unit = {},
+    blocks:()->Unit ={},
+    manager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
+): MyKotlinListWithSlideAdapter<T>? {
+    return if (items != null) {
+        val adapter = MyKotlinListWithSlideAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
+            layoutManager = manager
+            adapter = this
+        }
+        val itemTouchHelper = ItemTouchHelper(MyListWithSlideToDelete(this.context,blocks))
+        itemTouchHelper.attachToRecyclerView(this)
+        adapter.submitList(items)
+        return adapter
+    } else null
 
 }
 
