@@ -133,6 +133,25 @@ fun <T> RecyclerView.setUpPagingWithGrid(
 
 }
 
+fun <T> RecyclerView.setUpVerticalListAdapter(
+    items: List<T>?,
+    diffUtil: DiffUtil.ItemCallback<T>,
+    layoutResId: Int,
+    bindHolder: View.(T) -> Unit,
+    itemClick: T.() -> Unit = {},
+    manager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
+): MyKotlinListWithSlideAdapter<T>? {
+    return if (items != null) {
+        val adapter = MyKotlinListWithSlideAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
+            layoutManager = manager
+            adapter = this
+        }
+        adapter.submitList(items)
+        return adapter
+    } else null
+
+}
+
 fun <T> RecyclerView.setUpVerticalListAdapterWithSlideLeft(
     items: List<T>?,
     diffUtil: DiffUtil.ItemCallback<T>,
