@@ -152,7 +152,7 @@ fun <T> RecyclerView.setUpVerticalListAdapter(
 
 }
 
-fun <T> RecyclerView.setUpVerticalListAdapterWithSlideLeft(
+/*fun <T> RecyclerView.setUpVerticalListAdapterWithSlideLeft(
     items: List<T>?,
     diffUtil: DiffUtil.ItemCallback<T>,
     layoutResId: Int,
@@ -172,6 +172,6 @@ fun <T> RecyclerView.setUpVerticalListAdapterWithSlideLeft(
         return adapter
     } else null
 
-}
+}*/
 
 
