@@ -5,8 +5,7 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.*
 import com.ian.recyclerviewhelper.base.paging_adapter.MyKotlinPagingAdapter
 import com.ian.recyclerviewhelper.base.simple_adapter.MyKotlinAdapter
-import com.ian.recyclerviewhelper.base.simple_list_with_slide_adapter.MyKotlinListWithSlideAdapter
-import com.ian.recyclerviewhelper.base.simple_list_with_slide_adapter.MyListWithSlideToDelete
+import com.ian.recyclerviewhelper.base.simple_list_with_slide_adapter.MyKotlinListAdapter
 
 /**
  *
@@ -140,9 +139,29 @@ fun <T> RecyclerView.setUpVerticalListAdapter(
     bindHolder: View.(T) -> Unit,
     itemClick: T.() -> Unit = {},
     manager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
-): MyKotlinListWithSlideAdapter<T>? {
+): MyKotlinListAdapter<T>? {
     return if (items != null) {
-        val adapter = MyKotlinListWithSlideAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
+        val adapter = MyKotlinListAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
+            layoutManager = manager
+            adapter = this
+        }
+        adapter.submitList(items)
+        return adapter
+    } else null
+
+}
+
+fun <T> RecyclerView.setUpVerticalGridAdapter(
+    items: List<T>?,
+    diffUtil: DiffUtil.ItemCallback<T>,
+    layoutResId: Int,
+    gridSize: Int,
+    bindHolder: View.(T) -> Unit,
+    itemClick: T.() -> Unit = {},
+    manager: RecyclerView.LayoutManager = GridLayoutManager(this.context,gridSize)
+): MyKotlinListAdapter<T>? {
+    return if (items != null) {
+        val adapter = MyKotlinListAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
             layoutManager = manager
             adapter = this
         }
@@ -160,9 +179,9 @@ fun <T> RecyclerView.setUpVerticalListAdapter(
     itemClick: T.() -> Unit = {},
     blocks:()->Unit ={},
     manager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
-): MyKotlinListWithSlideAdapter<T>? {
+): MyKotlinListAdapter<T>? {
     return if (items != null) {
-        val adapter = MyKotlinListWithSlideAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
+        val adapter = MyKotlinListAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
             layoutManager = manager
             adapter = this
         }
