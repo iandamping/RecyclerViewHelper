@@ -171,6 +171,29 @@ fun <T> RecyclerView.setUpVerticalGridAdapter(
 
 }
 
+fun <T> RecyclerView.setUpHorizontalListAdapter(
+    items: List<T>?,
+    diffUtil: DiffUtil.ItemCallback<T>,
+    layoutResId: Int,
+    bindHolder: View.(T) -> Unit,
+    itemClick: T.() -> Unit = {},
+    manager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
+): MyKotlinListAdapter<T>? {
+    if (this.onFlingListener == null) {
+        RecyclerHorizontalSnapHelper().attachToRecyclerView(this)
+    }
+
+    return if (items != null) {
+        val adapter = MyKotlinListAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
+            layoutManager = manager
+            adapter = this
+        }
+        adapter.submitList(items)
+        return adapter
+    } else null
+
+}
+
 /*fun <T> RecyclerView.setUpVerticalListAdapterWithSlideLeft(
     items: List<T>?,
     diffUtil: DiffUtil.ItemCallback<T>,
