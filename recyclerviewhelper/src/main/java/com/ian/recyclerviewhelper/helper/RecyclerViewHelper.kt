@@ -177,7 +177,8 @@ fun <T> RecyclerView.setUpHorizontalListAdapter(
     layoutResId: Int,
     bindHolder: View.(T) -> Unit,
     itemClick: T.() -> Unit = {},
-    manager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
+    manager: RecyclerView.LayoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,
+        false)
 ): MyKotlinListAdapter<T>? {
     if (this.onFlingListener == null) {
         RecyclerHorizontalSnapHelper().attachToRecyclerView(this)
