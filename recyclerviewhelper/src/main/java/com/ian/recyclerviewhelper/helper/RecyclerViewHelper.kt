@@ -29,6 +29,7 @@ fun <T> RecyclerView.setUpHorizontal(items: List<T>?, layoutResId: Int,
         }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
     }
     return null
@@ -43,6 +44,7 @@ fun <T> RecyclerView.setUpVertical(items: List<T>?, layoutResId: Int,
         }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
     }
     return null
@@ -58,6 +60,7 @@ fun <T> RecyclerView.setUpWithGrid(
         }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
     }
     return null
@@ -77,6 +80,7 @@ fun <T> RecyclerView.setUpPagingVertical(
         }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
         adapter.submitList(items)
         return adapter
@@ -101,6 +105,7 @@ fun <T> RecyclerView.setUpPagingHorizontal(
         }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
         adapter.submitList(items)
         return adapter
@@ -124,6 +129,7 @@ fun <T> RecyclerView.setUpPagingWithGrid(
         }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
         adapter.submitList(items)
         return adapter
@@ -144,6 +150,7 @@ fun <T> RecyclerView.setUpVerticalListAdapter(
         val adapter = MyKotlinListAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
         adapter.submitList(items)
         return adapter
@@ -164,6 +171,7 @@ fun <T> RecyclerView.setUpVerticalGridAdapter(
         val adapter = MyKotlinListAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
         adapter.submitList(items)
         return adapter
@@ -188,6 +196,7 @@ fun <T> RecyclerView.setUpHorizontalListAdapter(
         val adapter = MyKotlinListAdapter(layoutResId, { bindHolder(it) }, diffUtil, { itemClick() }).apply {
             layoutManager = manager
             adapter = this
+            notifyDataSetChanged()
         }
         adapter.submitList(items)
         return adapter
