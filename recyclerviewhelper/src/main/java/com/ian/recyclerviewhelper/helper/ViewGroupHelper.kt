@@ -12,11 +12,3 @@ Github = https://github.com/iandamping
 internal fun ViewGroup.inflates(layout: Int): View {
     return LayoutInflater.from(context).inflate(layout, this, false)
 }
-
-internal fun View.visible() {
-    this.visibility = View.VISIBLE
-}
-
-internal fun View.gone() {
-    this.visibility = View.GONE
-}
